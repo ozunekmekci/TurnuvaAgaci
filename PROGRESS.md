@@ -13,7 +13,7 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ## Şu An Aktif Sprint
 
-**Sprint 7 — Responsive/mobil düzen** (devam ediyor)
+**Sprint 8 — Cila: gerçek veriyle uçtan uca test, performans, deploy** (devam ediyor)
 
 ---
 
@@ -26,8 +26,8 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 - [x] Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)
 - [x] Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)
 - [x] Sprint 6 — Paylaşım (X.com intent + OG image + native share)
-- [/] Sprint 7 — Responsive/mobil düzen
-- [ ] Sprint 8 — Cila: gerçek veriyle uçtan uca test, performans, deploy
+- [x] Sprint 7 — Responsive/mobil düzen
+- [/] Sprint 8 — Cila: gerçek veriyle uçtan uca test, performans, deploy
 
 ---
 
@@ -96,10 +96,10 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ### Sprint 7 — Responsive/Mobil
 
-- [ ] Bracket'in mobilde yatay scroll davranışı.
-- [ ] "Şu an hangi turdasın" mini breadcrumb/harita bileşeni.
-- [ ] Dokunma hedeflerinin (tap targets) mobilde yeterince büyük olduğunu doğrula.
-- [ ] Paylaşım akışının mobilde gerçek cihazda (veya tarayıcı dev tools mobil emülasyonunda) test edilmesi.
+- [x] Bracket'in mobilde yatay scroll davranışı.
+- [x] "Şu an hangi turdasın" mini breadcrumb/harita bileşeni.
+- [x] Dokunma hedeflerinin (tap targets) mobilde yeterince büyük olduğunu doğrula.
+- [x] Paylaşım akışının mobilde gerçek cihazda (veya tarayıcı dev tools mobil emülasyonunda) test edilmesi.
 
 ### Sprint 8 — Cila ve Yayın
 
