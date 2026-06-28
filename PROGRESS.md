@@ -13,15 +13,15 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ## Şu An Aktif Sprint
 
-**Sprint 0 — Proje iskeleti** (devam ediyor)
+**Sprint 2 — Bracket motoru** (devam ediyor)
 
 ---
 
 ## Genel İlerleme Haritası
 
-- [/] Sprint 0 — Proje iskeleti ve temel kurulum
-- [ ] Sprint 1 — Veri modeli ve sync script
-- [ ] Sprint 2 — Bracket motoru (saf mantık + testler)
+- [x] Sprint 0 — Proje iskeleti ve temel kurulum
+- [x] Sprint 1 — Veri modeli ve sync script
+- [/] Sprint 2 — Bracket motoru (saf mantık + testler)
 - [ ] Sprint 3 — URL-state katmanı
 - [ ] Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)
 - [ ] Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)
@@ -40,16 +40,16 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 - [x] Vitest kurulumu (`vitest`, `@vitest/ui` opsiyonel).
 - [x] Temel klasör yapısını oluştur.
 - [x] `.gitignore`, temel `README.md` (proje açıklaması + nasıl çalıştırılır).
-- [/] Vercel'e ilk boş deploy (placeholder sayfa) — pipeline çalıştığını doğrula.
+- [x] Vercel'e ilk boş deploy (placeholder sayfa) — pipeline çalıştığını doğrula.
 
 ### Sprint 1 — Veri Modeli ve Sync Script
 
-- [ ] SYSTEM_PROMPT.md Bölüm 4.1'deki `RealMatch` ve `TeamRef` tiplerini `/lib/bracket/types.ts`'te tanımla.
-- [ ] 2026 Dünya Kupası Son 32 kadrosunu ve eşleşme ağacını (hangi Son 32 maçı hangi Son 16 slotuna besliyor, vs.) `tournament-data.json`'a elle/script ile doldur — bu, openfootball/worldcup.json'dan çekilecek.
-- [ ] `team-mapping.json`'ı doldur: her takım için İngilizce kaynak adı → Türkçe görünen ad + bayrak kodu.
-- [ ] `scripts/sync-tournament-data.ts` yaz: openfootball/worldcup.json kaynağını çekip kendi formatımıza dönüştürsün, `tournament-data.json`'ı güncellesin. Eşleşmeyen takım adında HATA fırlatsın (sessiz geçmesin).
-- [ ] Script'i elle çalıştırıp çıktıyı doğrula (`pnpm sync-data`).
-- [ ] **Doğrulama testi:** Script'i şu an gerçek Son 32 verisiyle çalıştır, görseldeki/gerçek 2026 WC Son 32 eşleşmeleriyle bire bir örtüştüğünü gözle kontrol et.
+- [x] SYSTEM_PROMPT.md Bölüm 4.1'deki `RealMatch` ve `TeamRef` tiplerini `src/lib/bracket/types.ts`'te tanımla.
+- [x] 2026 Dünya Kupası Son 32 kadrosunu ve eşleşme ağacını (hangi Son 32 maçı hangi Son 16 slotuna besliyor, vs.) `tournament-data.json`'a elle/script ile doldur — bu, openfootball/worldcup.json'dan çekilecek.
+- [x] `team-mapping.json`'ı doldur: her takım için İngilizce kaynak adı → Türkçe görünen ad + bayrak kodu.
+- [x] `scripts/sync-tournament-data.ts` yaz: openfootball/worldcup.json kaynağını çekip kendi formatımıza dönüştürsün, `tournament-data.json`'ı güncellesin. Eşleşmeyen takım adında HATA fırlatsın (sessiz geçmesin).
+- [x] Script'i elle çalıştırıp çıktıyı doğrula (`npm run sync-data`).
+- [x] **Doğrulama testi:** Script'i şu an gerçek Son 32 verisiyle çalıştır, görseldeki/gerçek 2026 WC Son 32 eşleşmeleriyle bire bir örtüştüğünü gözle kontrol et.
 
 ### Sprint 2 — Bracket Motoru
 
