@@ -1,0 +1,610 @@
+[
+  {
+    "id": "R32-1",
+    "round": "R32",
+    "slot": 1,
+    "side": "LEFT",
+    "homeTeam": {
+      "id": "RSA",
+      "name": "Güney Afrika",
+      "flagCode": "za"
+    },
+    "awayTeam": {
+      "id": "CAN",
+      "name": "Kanada",
+      "flagCode": "ca"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-2",
+    "round": "R32",
+    "slot": 2,
+    "side": "LEFT",
+    "homeTeam": {
+      "id": "GER",
+      "name": "Almanya",
+      "flagCode": "de"
+    },
+    "awayTeam": {
+      "id": "PAR",
+      "name": "Paraguay",
+      "flagCode": "py"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-3",
+    "round": "R32",
+    "slot": 3,
+    "side": "LEFT",
+    "homeTeam": {
+      "id": "NED",
+      "name": "Hollanda",
+      "flagCode": "nl"
+    },
+    "awayTeam": {
+      "id": "MAR",
+      "name": "Fas",
+      "flagCode": "ma"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-4",
+    "round": "R32",
+    "slot": 4,
+    "side": "RIGHT",
+    "homeTeam": {
+      "id": "BRA",
+      "name": "Brezilya",
+      "flagCode": "br"
+    },
+    "awayTeam": {
+      "id": "JPN",
+      "name": "Japonya",
+      "flagCode": "jp"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-5",
+    "round": "R32",
+    "slot": 5,
+    "side": "LEFT",
+    "homeTeam": {
+      "id": "FRA",
+      "name": "Fransa",
+      "flagCode": "fr"
+    },
+    "awayTeam": {
+      "id": "SWE",
+      "name": "İsveç",
+      "flagCode": "se"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-6",
+    "round": "R32",
+    "slot": 6,
+    "side": "RIGHT",
+    "homeTeam": {
+      "id": "CIV",
+      "name": "Fildişi Sahili",
+      "flagCode": "ci"
+    },
+    "awayTeam": {
+      "id": "NOR",
+      "name": "Norveç",
+      "flagCode": "no"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-7",
+    "round": "R32",
+    "slot": 7,
+    "side": "RIGHT",
+    "homeTeam": {
+      "id": "MEX",
+      "name": "Meksika",
+      "flagCode": "mx"
+    },
+    "awayTeam": {
+      "id": "ECU",
+      "name": "Ekvador",
+      "flagCode": "ec"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-8",
+    "round": "R32",
+    "slot": 8,
+    "side": "RIGHT",
+    "homeTeam": {
+      "id": "ENG",
+      "name": "İngiltere",
+      "flagCode": "gb-eng"
+    },
+    "awayTeam": {
+      "id": "COD",
+      "name": "Demokratik Kongo Cumhuriyeti",
+      "flagCode": "cd"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-9",
+    "round": "R32",
+    "slot": 9,
+    "side": "LEFT",
+    "homeTeam": {
+      "id": "USA",
+      "name": "Amerika Birleşik Devletleri",
+      "flagCode": "us"
+    },
+    "awayTeam": {
+      "id": "BIH",
+      "name": "Bosna-Hersek",
+      "flagCode": "ba"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-10",
+    "round": "R32",
+    "slot": 10,
+    "side": "LEFT",
+    "homeTeam": {
+      "id": "BEL",
+      "name": "Belçika",
+      "flagCode": "be"
+    },
+    "awayTeam": {
+      "id": "SEN",
+      "name": "Senegal",
+      "flagCode": "sn"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-11",
+    "round": "R32",
+    "slot": 11,
+    "side": "LEFT",
+    "homeTeam": {
+      "id": "POR",
+      "name": "Portekiz",
+      "flagCode": "pt"
+    },
+    "awayTeam": {
+      "id": "CRO",
+      "name": "Hırvatistan",
+      "flagCode": "hr"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-12",
+    "round": "R32",
+    "slot": 12,
+    "side": "LEFT",
+    "homeTeam": {
+      "id": "ESP",
+      "name": "İspanya",
+      "flagCode": "es"
+    },
+    "awayTeam": {
+      "id": "AUT",
+      "name": "Avusturya",
+      "flagCode": "at"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-13",
+    "round": "R32",
+    "slot": 13,
+    "side": "RIGHT",
+    "homeTeam": {
+      "id": "SUI",
+      "name": "İsviçre",
+      "flagCode": "ch"
+    },
+    "awayTeam": {
+      "id": "ALG",
+      "name": "Cezayir",
+      "flagCode": "dz"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-14",
+    "round": "R32",
+    "slot": 14,
+    "side": "RIGHT",
+    "homeTeam": {
+      "id": "ARG",
+      "name": "Arjantin",
+      "flagCode": "ar"
+    },
+    "awayTeam": {
+      "id": "CPV",
+      "name": "Yeşil Burun Adaları",
+      "flagCode": "cv"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-15",
+    "round": "R32",
+    "slot": 15,
+    "side": "RIGHT",
+    "homeTeam": {
+      "id": "COL",
+      "name": "Kolombiya",
+      "flagCode": "co"
+    },
+    "awayTeam": {
+      "id": "GHA",
+      "name": "Gana",
+      "flagCode": "gh"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R32-16",
+    "round": "R32",
+    "slot": 16,
+    "side": "RIGHT",
+    "homeTeam": {
+      "id": "AUS",
+      "name": "Avustralya",
+      "flagCode": "au"
+    },
+    "awayTeam": {
+      "id": "EGY",
+      "name": "Mısır",
+      "flagCode": "eg"
+    },
+    "homeSource": null,
+    "awaySource": null,
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R16-1",
+    "round": "R16",
+    "slot": 1,
+    "side": "LEFT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R32-2",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R32-5",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R16-2",
+    "round": "R16",
+    "slot": 2,
+    "side": "LEFT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R32-1",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R32-3",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R16-3",
+    "round": "R16",
+    "slot": 3,
+    "side": "RIGHT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R32-4",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R32-6",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R16-4",
+    "round": "R16",
+    "slot": 4,
+    "side": "RIGHT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R32-7",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R32-8",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R16-5",
+    "round": "R16",
+    "slot": 5,
+    "side": "LEFT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R32-11",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R32-12",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R16-6",
+    "round": "R16",
+    "slot": 6,
+    "side": "LEFT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R32-9",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R32-10",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R16-7",
+    "round": "R16",
+    "slot": 7,
+    "side": "RIGHT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R32-14",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R32-16",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "R16-8",
+    "round": "R16",
+    "slot": 8,
+    "side": "RIGHT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R32-13",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R32-15",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "QF-1",
+    "round": "QF",
+    "slot": 1,
+    "side": "LEFT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R16-1",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R16-2",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "QF-2",
+    "round": "QF",
+    "slot": 2,
+    "side": "LEFT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R16-5",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R16-6",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "QF-3",
+    "round": "QF",
+    "slot": 3,
+    "side": "RIGHT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R16-3",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R16-4",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "QF-4",
+    "round": "QF",
+    "slot": 4,
+    "side": "RIGHT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "R16-7",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "R16-8",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "SF-1",
+    "round": "SF",
+    "slot": 1,
+    "side": "LEFT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "QF-1",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "QF-2",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "SF-2",
+    "round": "SF",
+    "slot": 2,
+    "side": "RIGHT",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "QF-3",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "QF-4",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "3RD-1",
+    "round": "3RD",
+    "slot": 1,
+    "side": "CENTER",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "SF-1",
+      "type": "LOSER"
+    },
+    "awaySource": {
+      "matchId": "SF-2",
+      "type": "LOSER"
+    },
+    "winner": null,
+    "playedAt": null
+  },
+  {
+    "id": "F-1",
+    "round": "F",
+    "slot": 1,
+    "side": "CENTER",
+    "homeTeam": null,
+    "awayTeam": null,
+    "homeSource": {
+      "matchId": "SF-1",
+      "type": "WINNER"
+    },
+    "awaySource": {
+      "matchId": "SF-2",
+      "type": "WINNER"
+    },
+    "winner": null,
+    "playedAt": null
+  }
+]
