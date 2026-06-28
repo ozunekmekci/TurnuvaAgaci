@@ -101,26 +101,26 @@ export const MatchCard: React.FC<MatchCardProps> = ({
   return (
     <div
       data-match-id={matchId}
-      className={`match-card-node relative w-[200px] rounded-[18px] transition-all duration-300 border p-2 backdrop-blur-md
+      className={`match-card-node relative w-[200px] rounded-[22px] transition-all duration-300 border p-2.5 backdrop-blur-md
         ${
           // 1. Pending / Waiting state
           selectableTeams.length < 2
-            ? 'border-slate-800/40 bg-slate-950/20 opacity-40 pointer-events-none'
+            ? 'border-white/5 bg-black/40 opacity-70 pointer-events-none'
             : // 2. Invalidated state (needs attention)
             isInvalidated
-            ? 'border-rose-500/50 bg-rose-950/10 shadow-[0_0_15px_rgba(244,63,94,0.15)] animate-pulse'
+            ? 'border-rose-500/50 bg-rose-950/20 shadow-[0_0_15px_rgba(244,63,94,0.15)] animate-pulse'
             : // 3. Locked / Played state
             isLocked
-            ? 'border-slate-800 bg-slate-950/50 opacity-90'
+            ? 'border-white/10 bg-black/55 opacity-90'
             : // 4. User selection made or selectable
             userPick
-            ? 'border-amber-500/40 bg-slate-950/45 shadow-[0_0_12px_rgba(245,158,11,0.06)]'
-            : 'border-slate-800/60 bg-slate-950/30 hover:border-slate-700/80 hover:bg-slate-950/50'
+            ? 'border-amber-500/40 bg-black/45 shadow-[0_0_12px_rgba(245,158,11,0.08)]'
+            : 'border-white/10 bg-black/40 hover:border-white/20'
         }
       `}
     >
       {/* Badges / Header (Date and City) */}
-      <div className="flex justify-between items-center mb-1.5 px-1 text-[8.5px] font-bold text-slate-500 uppercase tracking-wide select-none">
+      <div className="flex justify-between items-center mb-1.5 px-1 text-[8.5px] font-bold text-slate-300 uppercase tracking-wide select-none">
         <span>{matchDetails.date}</span>
         <div className="flex items-center gap-1">
           {isLocked && <Lock className="w-2.5 h-2.5 text-slate-400" />}
@@ -177,16 +177,19 @@ function renderTeamRow(
 ) {
   if (!team) {
     return (
-      <div className="w-full flex items-center justify-between h-8 px-2 rounded-lg bg-[#131316]/50 border border-slate-900/60 opacity-60">
+      <div className="w-full flex items-center justify-between h-8 px-2 rounded-xl bg-[#151519] border border-white/5 opacity-80">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-[5px] bg-[#5a5b6f]/10 border border-slate-800/40 flex items-center justify-center text-slate-700 text-[10px] font-extrabold select-none">
-            -
-          </div>
-          <span className="font-fwc2026 text-[11px] tracking-widest text-slate-600 font-bold select-none">
+          {/* Flag Placeholder (Left for TBD matches) */}
+          <div className="w-6 h-4 bg-[#5a5b6f] border border-[#F7F7F8]/80 rounded-[5px_0px_5px_0px] flex-shrink-0" />
+          {/* TBD Text (Middle) */}
+          <span className="font-fwc2026 text-[12px] tracking-widest text-[#B6B7C3] font-bold select-none">
             TBD
           </span>
         </div>
-        <div className="w-7 h-5 bg-slate-950/10 border border-slate-900/40 rounded flex-shrink-0" />
+        {/* Checkbox box (Right for TBD matches) */}
+        <div className="w-5 h-5 rounded-[5px] bg-[#5a5b6f] flex items-center justify-center text-[#F7F7F8] text-[9px] font-black select-none">
+          -
+        </div>
       </div>
     );
   }
@@ -198,7 +201,7 @@ function renderTeamRow(
       type="button"
       onClick={onClick}
       disabled={!isSelectable}
-      className={`w-full flex items-center justify-between h-8 px-2 rounded-lg transition-all text-left border
+      className={`w-full flex items-center justify-between h-8 px-2 rounded-xl transition-all text-left border
         ${
           isSelectable
             ? 'hover:scale-[1.02] cursor-pointer active:scale-[0.98]'
@@ -206,19 +209,19 @@ function renderTeamRow(
         }
         ${
           isChosen
-            ? 'bg-amber-500/10 border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.08)]'
-            : 'bg-[#131316] border-slate-900/80 hover:border-slate-850'
+            ? 'bg-[#151519] border-amber-500/40 shadow-[0_0_8px_rgba(245,158,11,0.08)]'
+            : 'bg-[#151519] border-white/5 hover:border-white/10'
         }
       `}
     >
       <div className="flex items-center gap-2 truncate">
-        {/* Checkbox box */}
+        {/* Checkbox box (Left for real teams) */}
         <div
-          className={`w-5 h-5 rounded-[5px] flex items-center justify-center text-[10px] font-extrabold select-none transition-all
+          className={`w-5 h-5 rounded-[5px] flex items-center justify-center text-[9px] font-extrabold select-none transition-all
             ${
               isChosen
                 ? 'bg-amber-500 text-slate-950 font-black'
-                : 'bg-[#5a5b6f]/20 text-slate-300'
+                : 'bg-[#5a5b6f] text-[#F7F7F8]'
             }
           `}
         >
@@ -228,14 +231,14 @@ function renderTeamRow(
         {/* Team name in uppercase & sporty font */}
         <span
           className={`font-fwc2026 text-[12px] tracking-widest truncate font-bold
-            ${isChosen ? 'text-amber-400 font-extrabold' : 'text-slate-100'}
+            ${isChosen ? 'text-amber-400 font-extrabold' : 'text-[#B6B7C3]'}
           `}
         >
           {team.name.toUpperCase()}
         </span>
       </div>
 
-      {/* Flag with rounded corners */}
+      {/* Flag with rounded corners (Right for real teams) */}
       <Flag
         code={team.flagCode}
         className="w-7 h-5 flex-shrink-0 rounded-[3px] shadow-sm border border-slate-950"

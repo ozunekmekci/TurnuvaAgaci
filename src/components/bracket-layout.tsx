@@ -43,8 +43,8 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
         // (8 columns * 200px) + (1 center column * 220px) + (8 gaps * 16px) = 1948px
         const designWidth = 1948;
         
-        // Calculate scale to fit the parent width exactly, allowing a small margin
-        const calculatedScale = Math.min(1, Math.max(0.2, (parentWidth - 16) / designWidth));
+        // Calculate scale to fit the parent width exactly, allowing a safe margin on sides
+        const calculatedScale = Math.min(1, Math.max(0.2, (parentWidth - 48) / designWidth));
         setScale(calculatedScale);
       }
     };
