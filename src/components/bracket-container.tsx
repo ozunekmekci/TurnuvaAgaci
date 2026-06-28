@@ -140,7 +140,7 @@ export const BracketContainer: React.FC = () => {
             type="button"
             onClick={resetPicks}
             disabled={completedPicksCount === 0 || isUpdating}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-slate-700 disabled:opacity-40 disabled:hover:border-slate-800 transition-all text-xs font-bold text-slate-400 hover:text-slate-200 cursor-pointer active:scale-95 disabled:active:scale-100"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-slate-700 disabled:opacity-40 disabled:hover:border-slate-800 transition-all font-fwc2026 text-[11px] tracking-wider text-slate-400 hover:text-slate-200 cursor-pointer active:scale-95 disabled:active:scale-100"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Sıfırla</span>
@@ -151,7 +151,7 @@ export const BracketContainer: React.FC = () => {
             type="button"
             onClick={handleShareClick}
             disabled={completedPicksCount === 0 || isUpdating}
-            className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl font-bold text-xs transition-all cursor-pointer active:scale-95 disabled:active:scale-100
+            className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl font-fwc2026 text-[11px] tracking-wider transition-all cursor-pointer active:scale-95 disabled:active:scale-100
               ${
                 completedPicksCount > 0
                   ? 'bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]'
@@ -176,7 +176,7 @@ export const BracketContainer: React.FC = () => {
       </div>
 
       {/* Symmetrical Bracket Render */}
-      <div className="w-full max-w-full overflow-hidden bg-slate-950/40 rounded-3xl border border-slate-800/80 p-4 shadow-2xl backdrop-blur-sm">
+      <div className="w-full max-w-full overflow-hidden bg-[#1d70e6] rounded-[32px] border border-blue-500/50 p-4 shadow-[0_15px_40px_rgba(29,112,230,0.15)] relative">
         <BracketLayout
           resolvedMatches={resolvedMatches}
           rawUserPicks={userPicks}
@@ -290,7 +290,7 @@ function renderNavButton(
     <button
       type="button"
       onClick={onClick}
-      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-[10px] md:text-xs font-bold transition-all cursor-pointer active:scale-95
+      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border font-fwc2026 text-[10px] md:text-[11px] tracking-wider transition-all cursor-pointer active:scale-95
         ${
           isCompleted
             ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20'
@@ -302,7 +302,7 @@ function renderNavButton(
     >
       {isCompleted && <Check className="w-3 h-3 text-emerald-400" />}
       <span>{label}</span>
-      <span className={`text-[9px] px-1 rounded-md py-0.2 ml-0.5
+      <span className={`font-sans text-[9px] px-1 rounded-md py-0.2 ml-0.5
         ${isCompleted ? 'bg-emerald-500/15' : 'bg-slate-950/60'}
       `}>
         {stat.completed}/{stat.total}

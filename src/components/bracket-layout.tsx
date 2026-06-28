@@ -40,8 +40,8 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
         // Measure parent width (or viewport width as safety fallback)
         const parentWidth = containerRef.current.parentElement?.clientWidth || window.innerWidth;
         // Total design width of the bracket:
-        // (8 columns * 190px) + (1 center column * 220px) + (8 gaps * 16px) = 1868px
-        const designWidth = 1868;
+        // (8 columns * 200px) + (1 center column * 220px) + (8 gaps * 16px) = 1948px
+        const designWidth = 1948;
         
         // Calculate scale to fit the parent width exactly, allowing a small margin
         const calculatedScale = Math.min(1, Math.max(0.2, (parentWidth - 16) / designWidth));
@@ -129,7 +129,6 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
             const cX = c.x;
             const cY = c.y + c.height / 2;
 
-            // Center X between left parent output and right child input
             const midX = p1X + 8; // halfway of the 16px gap
 
             newPaths.push(
@@ -197,7 +196,7 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
   const finalMatch = getMatch('F-1');
   const champion: TeamRef | null = finalMatch.userPick;
 
-  const bracketHeight = 850; // Increased to 850 to prevent bottom row clipping (Spain & Colombia)
+  const bracketHeight = 800; // Increased to 800 to accommodate the round header bar elegantly
 
   return (
     <div ref={containerRef} className="w-full flex flex-col items-center overflow-hidden">
@@ -211,201 +210,220 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
         }}
         className="flex items-start justify-center"
       >
-        {/* The actual bracket, absolutely positioned and scaled */}
+        {/* The actual bracket layout containing header and columns, absolutely positioned and scaled */}
         <div
-          ref={rowRef}
           style={{
             transform: `scale(${scale})`,
             transformOrigin: 'top center',
-            width: 1868, // design width to fit 190px columns
+            width: 1948,
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             gap: 16,
             paddingTop: 12,
             position: 'absolute',
             left: '50%',
-            marginLeft: -934, // Negative half of 1868 to center perfectly
+            marginLeft: -974, // Negative half of 1948 to center perfectly
           }}
           className="flex-shrink-0"
         >
-          {/* Dynamic SVG Bracket Lines rendered behind the match cards */}
-          <svg className="absolute inset-0 pointer-events-none w-full h-full" style={{ zIndex: 0 }}>
-            {paths.map((p, i) => (
-              <path
-                key={i}
-                d={p}
-                stroke="rgba(71, 85, 105, 0.45)" // Elegant Slate-600 line with transparency
-                strokeWidth="1.5"
-                fill="none"
-              />
-            ))}
-          </svg>
-
-          {/* LEFT SIDE BRACKET */}
-          <div className="flex flex-row gap-4 items-center flex-shrink-0 z-10">
-            {/* R32 Left */}
-            <div id="col-left-r32" className="flex flex-col justify-between h-[850px] py-1.5 scroll-mt-4 w-[190px] flex-shrink-0">
-              {LEFT_R32_IDS.map((id) => (
-                <MatchCard
-                  key={id}
-                  {...getMatch(id)}
-                  rawUserPickId={rawUserPicks[id]}
-                  onPick={(teamId) => handlePick(id, teamId)}
-                />
-              ))}
-            </div>
-
-            {/* R16 Left */}
-            <div id="col-left-r16" className="flex flex-col justify-around h-[850px] py-8 scroll-mt-4 w-[190px] flex-shrink-0">
-              {LEFT_R16_IDS.map((id) => (
-                <MatchCard
-                  key={id}
-                  {...getMatch(id)}
-                  rawUserPickId={rawUserPicks[id]}
-                  onPick={(teamId) => handlePick(id, teamId)}
-                />
-              ))}
-            </div>
-
-            {/* QF Left */}
-            <div id="col-left-qf" className="flex flex-col justify-around h-[850px] py-16 scroll-mt-4 w-[190px] flex-shrink-0">
-              {LEFT_QF_IDS.map((id) => (
-                <MatchCard
-                  key={id}
-                  {...getMatch(id)}
-                  rawUserPickId={rawUserPicks[id]}
-                  onPick={(teamId) => handlePick(id, teamId)}
-                />
-              ))}
-            </div>
-
-            {/* SF Left */}
-            <div id="col-left-sf" className="flex flex-col justify-center h-[850px] scroll-mt-4 w-[190px] flex-shrink-0">
-              {LEFT_SF_IDS.map((id) => (
-                <MatchCard
-                  key={id}
-                  {...getMatch(id)}
-                  rawUserPickId={rawUserPicks[id]}
-                  onPick={(teamId) => handlePick(id, teamId)}
-                />
-              ))}
-            </div>
+          {/* Round Header Bar as in Mockup 1 */}
+          <div className="w-full h-8 flex flex-row items-center justify-between bg-blue-700/60 border border-blue-500/30 rounded-xl px-1 select-none font-fwc2026 text-[10px] md:text-[11px] tracking-widest text-white/90 z-20">
+            <span className="w-[200px] text-center">R32</span>
+            <span className="w-[200px] text-center">R16</span>
+            <span className="w-[200px] text-center">QF</span>
+            <span className="w-[200px] text-center">SF</span>
+            <span className="w-[220px] text-center text-amber-300">FINAL</span>
+            <span className="w-[200px] text-center">SF</span>
+            <span className="w-[200px] text-center">QF</span>
+            <span className="w-[200px] text-center">R16</span>
+            <span className="w-[200px] text-center">R32</span>
           </div>
 
-          {/* CENTERPIECE: CHAMPION + FINAL + 3RD PLACE */}
-          <div id="col-center" className="flex flex-col items-center justify-center w-[220px] h-[850px] gap-6 scroll-mt-4 flex-shrink-0 z-10">
-            
-            {/* Champion Box */}
-            <div
-              className={`w-[200px] flex flex-col items-center justify-center p-4 rounded-xl border transition-all duration-500
-                ${
-                  champion
-                    ? 'border-amber-500 bg-gradient-to-b from-amber-500/20 to-slate-900/60 shadow-[0_0_25px_rgba(245,158,11,0.25)] animate-bounce'
-                    : 'border-slate-800 bg-slate-900/30 opacity-70'
-                }
-              `}
-            >
-              <Trophy
-                className={`w-10 h-10 mb-2 transition-transform duration-500 ${
-                  champion ? 'text-amber-400 scale-110 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]' : 'text-slate-700'
-                }`}
-              />
-              <span className="text-[9px] font-bold tracking-widest text-slate-500 uppercase mb-1">
-                ŞAMPİYON
-              </span>
-              {champion ? (
-                <div className="flex flex-col items-center gap-1 mt-1">
-                  <Flag code={champion.flagCode} className="w-7 h-5 rounded" />
-                  <span className="text-sm font-extrabold text-amber-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
-                    {champion.name}
-                  </span>
-                </div>
-              ) : (
-                <span className="text-xs font-semibold text-slate-500 italic mt-1">
-                  Kupa Bekliyor
+          {/* The main columns container row */}
+          <div 
+            ref={rowRef}
+            style={{ width: 1948, gap: 16 }}
+            className="flex flex-row items-center justify-center relative flex-shrink-0"
+          >
+            {/* Dynamic SVG Bracket Lines rendered behind the match cards */}
+            <svg className="absolute inset-0 pointer-events-none w-full h-full" style={{ zIndex: 0 }}>
+              {paths.map((p, i) => (
+                <path
+                  key={i}
+                  d={p}
+                  stroke="rgba(255, 255, 255, 0.45)" // White semi-transparent connection lines as in mockup
+                  strokeWidth="1.8"
+                  fill="none"
+                />
+              ))}
+            </svg>
+
+            {/* LEFT SIDE BRACKET */}
+            <div className="flex flex-row gap-4 items-center flex-shrink-0 z-10">
+              {/* R32 Left */}
+              <div id="col-left-r32" className="flex flex-col justify-between h-[760px] py-1.5 scroll-mt-4 w-[200px] flex-shrink-0">
+                {LEFT_R32_IDS.map((id) => (
+                  <MatchCard
+                    key={id}
+                    {...getMatch(id)}
+                    rawUserPickId={rawUserPicks[id]}
+                    onPick={(teamId) => handlePick(id, teamId)}
+                  />
+                ))}
+              </div>
+
+              {/* R16 Left */}
+              <div id="col-left-r16" className="flex flex-col justify-around h-[760px] py-8 scroll-mt-4 w-[200px] flex-shrink-0">
+                {LEFT_R16_IDS.map((id) => (
+                  <MatchCard
+                    key={id}
+                    {...getMatch(id)}
+                    rawUserPickId={rawUserPicks[id]}
+                    onPick={(teamId) => handlePick(id, teamId)}
+                  />
+                ))}
+              </div>
+
+              {/* QF Left */}
+              <div id="col-left-qf" className="flex flex-col justify-around h-[760px] py-16 scroll-mt-4 w-[200px] flex-shrink-0">
+                {LEFT_QF_IDS.map((id) => (
+                  <MatchCard
+                    key={id}
+                    {...getMatch(id)}
+                    rawUserPickId={rawUserPicks[id]}
+                    onPick={(teamId) => handlePick(id, teamId)}
+                  />
+                ))}
+              </div>
+
+              {/* SF Left */}
+              <div id="col-left-sf" className="flex flex-col justify-center h-[760px] scroll-mt-4 w-[200px] flex-shrink-0">
+                {LEFT_SF_IDS.map((id) => (
+                  <MatchCard
+                    key={id}
+                    {...getMatch(id)}
+                    rawUserPickId={rawUserPicks[id]}
+                    onPick={(teamId) => handlePick(id, teamId)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* CENTERPIECE: CHAMPION + FINAL + 3RD PLACE */}
+            <div id="col-center" className="flex flex-col items-center justify-center w-[220px] h-[760px] gap-6 scroll-mt-4 flex-shrink-0 z-10">
+              
+              {/* Champion Box */}
+              <div
+                className={`w-[200px] flex flex-col items-center justify-center p-4 rounded-xl border transition-all duration-500
+                  ${
+                    champion
+                      ? 'border-amber-500 bg-gradient-to-b from-amber-500/20 to-slate-900/60 shadow-[0_0_25px_rgba(245,158,11,0.25)] animate-bounce'
+                      : 'border-slate-800 bg-slate-900/30 opacity-70'
+                  }
+                `}
+              >
+                <Trophy
+                  className={`w-10 h-10 mb-2 transition-transform duration-500 ${
+                    champion ? 'text-amber-400 scale-110 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]' : 'text-slate-700'
+                  }`}
+                />
+                <span className="font-fwc2026 text-[10px] tracking-widest text-slate-500 uppercase mb-1 select-none">
+                  ŞAMPİYON
                 </span>
-              )}
+                {champion ? (
+                  <div className="flex flex-col items-center gap-1 mt-1">
+                    <Flag code={champion.flagCode} className="w-7 h-5 rounded" />
+                    <span className="text-sm font-extrabold text-amber-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                      {champion.name}
+                    </span>
+                  </div>
+                ) : (
+                  <span className="text-xs font-semibold text-slate-500 italic mt-1">
+                    Kupa Bekliyor
+                  </span>
+                )}
+              </div>
+
+              {/* Final Match */}
+              <div className="flex flex-col items-center">
+                <span className="font-fwc2026 text-[10px] text-amber-500/80 tracking-widest uppercase mb-1 select-none">
+                  FİNAL
+                </span>
+                <MatchCard
+                  {...finalMatch}
+                  rawUserPickId={rawUserPicks['F-1']}
+                  onPick={(teamId) => handlePick('F-1', teamId)}
+                />
+              </div>
+
+              {/* 3rd Place Match */}
+              <div className="flex flex-col items-center">
+                <span className="font-fwc2026 text-[10px] text-slate-500 tracking-widest uppercase mb-1 select-none">
+                  3. LÜK MAÇI
+                </span>
+                <MatchCard
+                  {...getMatch('3RD-1')}
+                  rawUserPickId={rawUserPicks['3RD-1']}
+                  onPick={(teamId) => handlePick('3RD-1', teamId)}
+                />
+              </div>
+
             </div>
 
-            {/* Final Match */}
-            <div className="flex flex-col items-center">
-              <span className="text-[9px] font-bold text-amber-500/80 tracking-widest uppercase mb-1">
-                FİNAL
-              </span>
-              <MatchCard
-                {...finalMatch}
-                rawUserPickId={rawUserPicks['F-1']}
-                onPick={(teamId) => handlePick('F-1', teamId)}
-              />
-            </div>
+            {/* RIGHT SIDE BRACKET */}
+            <div className="flex flex-row-reverse gap-4 items-center flex-shrink-0 z-10">
+              {/* R32 Right */}
+              <div id="col-right-r32" className="flex flex-col justify-between h-[760px] py-1.5 scroll-mt-4 w-[200px] flex-shrink-0">
+                {RIGHT_R32_IDS.map((id) => (
+                  <MatchCard
+                    key={id}
+                    {...getMatch(id)}
+                    rawUserPickId={rawUserPicks[id]}
+                    onPick={(teamId) => handlePick(id, teamId)}
+                  />
+                ))}
+              </div>
 
-            {/* 3rd Place Match */}
-            <div className="flex flex-col items-center">
-              <span className="text-[9px] font-bold text-slate-500 tracking-widest uppercase mb-1">
-                3. LÜK MAÇI
-              </span>
-              <MatchCard
-                {...getMatch('3RD-1')}
-                rawUserPickId={rawUserPicks['3RD-1']}
-                onPick={(teamId) => handlePick('3RD-1', teamId)}
-              />
+              {/* R16 Right */}
+              <div id="col-right-r16" className="flex flex-col justify-around h-[760px] py-8 scroll-mt-4 w-[200px] flex-shrink-0">
+                {RIGHT_R16_IDS.map((id) => (
+                  <MatchCard
+                    key={id}
+                    {...getMatch(id)}
+                    rawUserPickId={rawUserPicks[id]}
+                    onPick={(teamId) => handlePick(id, teamId)}
+                  />
+                ))}
+              </div>
+
+              {/* QF Right */}
+              <div id="col-right-qf" className="flex flex-col justify-around h-[760px] py-16 scroll-mt-4 w-[200px] flex-shrink-0">
+                {RIGHT_QF_IDS.map((id) => (
+                  <MatchCard
+                    key={id}
+                    {...getMatch(id)}
+                    rawUserPickId={rawUserPicks[id]}
+                    onPick={(teamId) => handlePick(id, teamId)}
+                  />
+                ))}
+              </div>
+
+              {/* SF Right */}
+              <div id="col-right-sf" className="flex flex-col justify-center h-[760px] scroll-mt-4 w-[200px] flex-shrink-0">
+                {RIGHT_SF_IDS.map((id) => (
+                  <MatchCard
+                    key={id}
+                    {...getMatch(id)}
+                    rawUserPickId={rawUserPicks[id]}
+                    onPick={(teamId) => handlePick(id, teamId)}
+                  />
+                ))}
+              </div>
             </div>
 
           </div>
-
-          {/* RIGHT SIDE BRACKET */}
-          <div className="flex flex-row-reverse gap-4 items-center flex-shrink-0 z-10">
-            {/* R32 Right */}
-            <div id="col-right-r32" className="flex flex-col justify-between h-[850px] py-1.5 scroll-mt-4 w-[190px] flex-shrink-0">
-              {RIGHT_R32_IDS.map((id) => (
-                <MatchCard
-                  key={id}
-                  {...getMatch(id)}
-                  rawUserPickId={rawUserPicks[id]}
-                  onPick={(teamId) => handlePick(id, teamId)}
-                />
-              ))}
-            </div>
-
-            {/* R16 Right */}
-            <div id="col-right-r16" className="flex flex-col justify-around h-[850px] py-8 scroll-mt-4 w-[190px] flex-shrink-0">
-              {RIGHT_R16_IDS.map((id) => (
-                <MatchCard
-                  key={id}
-                  {...getMatch(id)}
-                  rawUserPickId={rawUserPicks[id]}
-                  onPick={(teamId) => handlePick(id, teamId)}
-                />
-              ))}
-            </div>
-
-            {/* QF Right */}
-            <div id="col-right-qf" className="flex flex-col justify-around h-[850px] py-16 scroll-mt-4 w-[190px] flex-shrink-0">
-              {RIGHT_QF_IDS.map((id) => (
-                <MatchCard
-                  key={id}
-                  {...getMatch(id)}
-                  rawUserPickId={rawUserPicks[id]}
-                  onPick={(teamId) => handlePick(id, teamId)}
-                />
-              ))}
-            </div>
-
-            {/* SF Right */}
-            <div id="col-right-sf" className="flex flex-col justify-center h-[850px] scroll-mt-4 w-[190px] flex-shrink-0">
-              {RIGHT_SF_IDS.map((id) => (
-                <MatchCard
-                  key={id}
-                  {...getMatch(id)}
-                  rawUserPickId={rawUserPicks[id]}
-                  onPick={(teamId) => handlePick(id, teamId)}
-                />
-              ))}
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
