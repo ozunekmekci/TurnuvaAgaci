@@ -42,7 +42,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({
 
   return (
     <div
-      className={`relative w-[220px] rounded-xl transition-all duration-300 border backdrop-blur-md p-3
+      className={`relative w-[180px] rounded-xl transition-all duration-300 border backdrop-blur-md p-2
         ${
           // 1. Pending / Waiting state
           selectableTeams.length < 2
@@ -61,7 +61,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({
       `}
     >
       {/* Badges / Header */}
-      <div className="flex justify-between items-center mb-2 text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
+      <div className="flex justify-between items-center mb-1 text-[9px] font-semibold text-slate-500 uppercase tracking-wider">
         <span>{matchId}</span>
         <div className="flex items-center gap-1">
           {isLocked && <Lock className="w-3 h-3 text-slate-400" />}
@@ -120,8 +120,8 @@ function renderTeamRow(
 ) {
   if (!team) {
     return (
-      <div className="flex items-center gap-2 h-7 text-xs text-slate-600 font-medium italic">
-        <div className="w-5 h-3.5 bg-slate-800/20 rounded-sm border border-slate-800/40" />
+      <div className="flex items-center gap-2 h-6 text-[11px] text-slate-600 font-medium italic">
+        <div className="w-4 h-3 bg-slate-800/20 rounded-sm border border-slate-800/40 flex-shrink-0" />
         <span>Bekleniyor</span>
       </div>
     );
@@ -134,7 +134,7 @@ function renderTeamRow(
       type="button"
       onClick={onClick}
       disabled={!isSelectable}
-      className={`w-full flex items-center justify-between h-7 px-1.5 rounded-lg transition-all text-left text-xs font-semibold
+      className={`w-full flex items-center justify-between h-6 px-1 rounded-lg transition-all text-left text-[11px] font-semibold
         ${
           isSelectable
             ? 'hover:bg-slate-800/60 cursor-pointer active:scale-95'
@@ -143,8 +143,8 @@ function renderTeamRow(
         ${isChosen ? 'text-amber-400 bg-amber-500/5' : 'text-slate-300'}
       `}
     >
-      <div className="flex items-center gap-2 truncate">
-        <Flag code={team.flagCode} className="w-5 h-3.5 flex-shrink-0" />
+      <div className="flex items-center gap-1.5 truncate">
+        <Flag code={team.flagCode} className="w-4 h-3 flex-shrink-0" />
         <span className="truncate">{team.name}</span>
       </div>
 
