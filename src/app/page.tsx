@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0b0d17] to-[#16192b] text-slate-100 p-4 md:p-8 flex flex-col items-center">
+    <main className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-b from-[#0b0d17] to-[#16192b] text-slate-100 p-4 md:p-8 flex flex-col items-center">
       {/* Title block */}
       <div className="max-w-4xl w-full text-center mt-6 mb-10 px-4">
         <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500 tracking-tight drop-shadow-sm uppercase">

@@ -104,7 +104,7 @@ export const BracketContainer: React.FC = () => {
   const ogImageUrl = `/api/og?p=${pParam}`;
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full max-w-full overflow-hidden flex flex-col items-center">
       {/* Top dashboard controls */}
       <div className="w-full max-w-6xl px-4 mb-6 flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 backdrop-blur-md">
         
@@ -176,7 +176,7 @@ export const BracketContainer: React.FC = () => {
       </div>
 
       {/* Symmetrical Bracket Render */}
-      <div className="w-full bg-slate-950/40 rounded-3xl border border-slate-800/80 p-4 shadow-2xl backdrop-blur-sm">
+      <div className="w-full max-w-full overflow-hidden bg-slate-950/40 rounded-3xl border border-slate-800/80 p-4 shadow-2xl backdrop-blur-sm">
         <BracketLayout
           resolvedMatches={resolvedMatches}
           rawUserPicks={userPicks}
