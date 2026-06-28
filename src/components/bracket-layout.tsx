@@ -348,8 +348,8 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
 
               {/* Final Match */}
               <div className="flex flex-col items-center">
-                <span className="font-fwc2026 text-[10px] text-amber-500/80 tracking-widest uppercase mb-1 select-none">
-                  FİNAL
+                <span className="font-fwc2026 text-[11px] text-slate-950 font-black tracking-widest bg-gradient-to-r from-amber-400 to-amber-500 rounded-full px-5 py-0.5 shadow-md mb-1.5 select-none uppercase">
+                  FINAL
                 </span>
                 <MatchCard
                   {...finalMatch}
@@ -360,13 +360,22 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
 
               {/* 3rd Place Match */}
               <div className="flex flex-col items-center">
-                <span className="font-fwc2026 text-[10px] text-slate-500 tracking-widest uppercase mb-1 select-none">
-                  3. LÜK MAÇI
+                <span className="font-fwc2026 text-[10px] text-white font-extrabold tracking-widest bg-blue-700/40 border border-blue-500/30 rounded-full px-5 py-0.5 shadow-md mb-1.5 select-none uppercase">
+                  3RD PLACE PLAYOFF
                 </span>
                 <MatchCard
                   {...getMatch('3RD-1')}
                   rawUserPickId={rawUserPicks['3RD-1']}
                   onPick={(teamId) => handlePick('3RD-1', teamId)}
+                />
+              </div>
+
+              {/* FIFA World Cup 2026 Official Logo */}
+              <div className="flex justify-center mt-1.5 flex-shrink-0">
+                <img
+                  src="/images/fifa-logo.png"
+                  alt="FIFA World Cup 2026"
+                  className="w-[84px] h-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] select-none pointer-events-none"
                 />
               </div>
 

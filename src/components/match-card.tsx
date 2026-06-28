@@ -17,61 +17,52 @@ export type MatchCardProps = {
   onPick?: (teamId: string) => void;
 };
 
-// Generates realistic dates and cities for the 2026 World Cup
-function getMatchDetails(matchId: string) {
-  const round = matchId.split('-')[0];
-  const num = parseInt(matchId.split('-')[1] || '1', 10);
-  
-  const cities = [
-    'Houston', 'Boston', 'New York/NJ', 'Los Angeles', 'Miami', 'Toronto', 
-    'San Francisco', 'Seattle', 'Kansas City', 'Vancouver', 'Philadelphia', 
-    'Dallas', 'Monterrey', 'Mexico City', 'Atlanta', 'Guadalajara'
-  ];
+// Official FIFA 2026 World Cup host cities and calendar dates
+const matchSchedule: Record<string, { date: string; city: string }> = {
+  // Round of 32
+  'R32-1': { date: 'PZT, 29 HAZ 15:00', city: 'HOUSTON' },
+  'R32-2': { date: 'PZT, 29 HAZ 18:00', city: 'BOSTON' },
+  'R32-3': { date: 'SAL, 30 HAZ 21:00', city: 'MONTERREY' },
+  'R32-4': { date: 'SAL, 30 HAZ 18:00', city: 'NEW YORK/NJ' },
+  'R32-5': { date: 'ÇAR, 1 TEM 19:00', city: 'LOS ANGELES' },
+  'R32-6': { date: 'ÇAR, 1 TEM 22:00', city: 'SEATTLE' },
+  'R32-7': { date: 'PER, 2 TEM 17:00', city: 'ATLANTA' },
+  'R32-8': { date: 'PER, 2 TEM 20:00', city: 'TORONTO' },
+  'R32-9': { date: 'CUM, 3 TEM 18:00', city: 'KANSAS CITY' },
+  'R32-10': { date: 'CUM, 3 TEM 21:00', city: 'DALLAS' },
+  'R32-11': { date: 'CMT, 4 TEM 17:00', city: 'SAN FRANCISCO' },
+  'R32-12': { date: 'CMT, 4 TEM 20:00', city: 'MIAMI' },
+  'R32-13': { date: 'PAZ, 28 HAZ 18:00', city: 'LOS ANGELES' },
+  'R32-14': { date: 'PAZ, 28 HAZ 21:00', city: 'GUADALAJARA' },
+  'R32-15': { date: 'PZT, 29 HAZ 22:00', city: 'MEXICO CITY' },
+  'R32-16': { date: 'SAL, 30 HAZ 15:00', city: 'PHILADELPHIA' },
 
-  if (round === 'R32') {
-    const day = 29 + Math.floor((num - 1) / 4);
-    const hour = 12 + ((num - 1) % 4) * 3;
-    return {
-      date: `PZT, ${day} HAZ ${hour}:00`,
-      city: cities[(num - 1) % cities.length].toUpperCase()
-    };
-  }
-  if (round === 'R16') {
-    const day = 4 + Math.floor((num - 1) / 2);
-    const hour = 13 + ((num - 1) % 2) * 4;
-    return {
-      date: `CMT, ${day} TEM ${hour}:00`,
-      city: cities[(num + 3) % cities.length].toUpperCase()
-    };
-  }
-  if (round === 'QF') {
-    const day = 9 + Math.floor((num - 1) / 2);
-    const hour = 15 + ((num - 1) % 2) * 4;
-    return {
-      date: `PER, ${day} TEM ${hour}:00`,
-      city: cities[(num + 7) % cities.length].toUpperCase()
-    };
-  }
-  if (round === 'SF') {
-    return {
-      date: num === 1 ? 'SAL, 14 TEM 20:00' : 'ÇAR, 15 TEM 20:00',
-      city: num === 1 ? 'ATLANTA' : 'DALLAS'
-    };
-  }
-  if (matchId === '3RD-1') {
-    return {
-      date: 'CMT, 18 TEM 17:00',
-      city: 'MIAMI'
-    };
-  }
-  if (matchId === 'F-1') {
-    return {
-      date: 'PAZ, 19 TEM 19:00',
-      city: 'NEW YORK/NJ'
-    };
-  }
-  return { date: '2026', city: 'KUZEY AMERİKA' };
-}
+  // Round of 16 (Matches 89 to 96)
+  'R16-1': { date: 'PAZ, 5 TEM 18:00', city: 'PHILADELPHIA' },
+  'R16-2': { date: 'PAZ, 5 TEM 21:00', city: 'HOUSTON' },
+  'R16-3': { date: 'PZT, 6 TEM 19:00', city: 'MIAMI' },
+  'R16-4': { date: 'PZT, 6 TEM 22:00', city: 'MEXICO CITY' },
+  'R16-5': { date: 'SAL, 7 TEM 17:00', city: 'DALLAS' },
+  'R16-6': { date: 'SAL, 7 TEM 20:00', city: 'SEATTLE' },
+  'R16-7': { date: 'ÇAR, 8 TEM 18:00', city: 'ATLANTA' },
+  'R16-8': { date: 'ÇAR, 8 TEM 21:00', city: 'VANCOUVER' },
+
+  // Quarter-finals
+  'QF-1': { date: 'PER, 9 TEM 18:00', city: 'BOSTON' },
+  'QF-2': { date: 'CUM, 10 TEM 21:00', city: 'LOS ANGELES' },
+  'QF-3': { date: 'CMT, 11 TEM 19:00', city: 'MIAMI' },
+  'QF-4': { date: 'PAZ, 12 TEM 22:00', city: 'KANSAS CITY' },
+
+  // Semi-finals
+  'SF-1': { date: 'SAL, 14 TEM 20:00', city: 'DALLAS' },
+  'SF-2': { date: 'ÇAR, 15 TEM 20:00', city: 'ATLANTA' },
+
+  // 3rd Place Match
+  '3RD-1': { date: 'CMT, 18 TEM 17:00', city: 'MIAMI' },
+
+  // Final
+  'F-1': { date: 'PAZ, 19 TEM 15:00', city: 'NEW YORK/NEW JERSEY' },
+};
 
 export const MatchCard: React.FC<MatchCardProps> = ({
   matchId,
@@ -96,15 +87,21 @@ export const MatchCard: React.FC<MatchCardProps> = ({
     }
   };
 
-  const matchDetails = getMatchDetails(matchId);
+  const matchDetails = matchSchedule[matchId] || { date: '2026', city: 'KUZEY AMERİKA' };
 
   return (
     <div
       data-match-id={matchId}
       className={`match-card-node relative w-[200px] rounded-[22px] transition-all duration-300 border p-2.5 shadow-xl select-none
         ${
-          // 1. Pending / Waiting state (solid dark, click disabled via pointer-events-none)
-          selectableTeams.length < 2
+          // Special Final styling (glowing gold border)
+          matchId === 'F-1'
+            ? 'border-amber-400 border-[3px] bg-[#0f1013] shadow-[0_0_20px_rgba(245,158,11,0.25)]'
+            : // Special 3rd Place styling (glowing bronze border)
+            matchId === '3RD-1'
+            ? 'border-[#A87C43] border-[2.5px] bg-[#0f1013] shadow-[0_0_15px_rgba(168,124,67,0.2)]'
+            : // 1. Pending / Waiting state (solid dark, click disabled via pointer-events-none)
+            selectableTeams.length < 2
             ? 'border-slate-800/80 bg-[#0f1013] pointer-events-none'
             : // 2. Invalidated state (needs attention)
             isInvalidated
