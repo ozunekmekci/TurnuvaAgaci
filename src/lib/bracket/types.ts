@@ -23,3 +23,13 @@ export type RealMatch = {
   winner: TeamRef | null;             // GERÇEK sonuç. null = henüz oynanmadı
   playedAt: string | null;            // ISO tarih/saat, UI'da "oynandı" rozeti için
 };
+
+export type ResolvedSlot = {
+  matchId: string;
+  homeTeam: TeamRef | null;
+  awayTeam: TeamRef | null;
+  isPlayed: boolean;
+  userPick: TeamRef | null;
+  selectableTeams: TeamRef[];
+  isLocked: boolean;
+};

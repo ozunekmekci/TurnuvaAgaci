@@ -13,7 +13,7 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ## Şu An Aktif Sprint
 
-**Sprint 3 — URL-state katmanı** (devam ediyor)
+**Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)** (devam ediyor)
 
 ---
 
@@ -22,8 +22,8 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 - [x] Sprint 0 — Proje iskeleti ve temel kurulum
 - [x] Sprint 1 — Veri modeli ve sync script
 - [x] Sprint 2 — Bracket motoru (saf mantık + testler)
-- [/] Sprint 3 — URL-state katmanı
-- [ ] Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)
+- [x] Sprint 3 — URL-state katmanı
+- [/] Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)
 - [ ] Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)
 - [ ] Sprint 6 — Paylaşım (X.com intent + OG image + native share)
 - [ ] Sprint 7 — Responsive/mobil düzen
@@ -65,11 +65,11 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ### Sprint 3 — URL-State Katmanı
 
-- [ ] `lz-string` kütüphanesini ekle.
-- [ ] `/lib/url-state/encode.ts` ve `decode.ts`: `userPicks` ↔ `?p=...` dönüşümü.
-- [ ] Encode öncesi "gerçek sonuçla aynı olan veya boş slotları temizleme" optimizasyonunu uygula (SYSTEM_PROMPT.md Bölüm 5).
-- [ ] Bir React hook (`useUserPicks`) yaz: URL'i okur, state'i tutar, her değişiklikte `router.replace` ile URL'i günceller.
-- [ ] Test: bir `userPicks` objesini encode edip decode ettiğinde aynı objeyi geri verdiğini doğrulayan round-trip testi.
+- [x] `lz-string` kütüphanesini ekle.
+- [x] `src/lib/url-state/encode.ts` ve `decode.ts`: `userPicks` ↔ `?p=...` dönüşümü.
+- [x] Encode öncesi "gerçek sonuçla aynı olan veya boş slotları temizleme" optimizasyonunu uygula (SYSTEM_PROMPT.md Bölüm 5).
+- [x] Bir React hook (`useUserPicks`) yaz: URL'i okur, state'i tutar, her değişiklikte `router.replace` ile URL'i günceller.
+- [x] Test: bir `userPicks` objesini encode edip decode ettiğinde aynı objeyi geri verdiğini doğrulayan round-trip testi.
 
 ### Sprint 4 — Bracket UI (Statik Görünüm)
 

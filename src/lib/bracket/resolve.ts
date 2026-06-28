@@ -6,13 +6,13 @@ function getTeamFromSource(
   type: 'WINNER' | 'LOSER'
 ): TeamRef | null {
   // 1. If the source match is already played in the real world, use the real result
-  if (sourceMatch.isPlayed && sourceMatch.winner) {
+  if (sourceMatch.isPlayed && sourceMatch.userPick) {
     if (type === 'WINNER') {
-      return sourceMatch.winner;
+      return sourceMatch.userPick;
     } else {
       // LOSER of real match
       if (!sourceMatch.homeTeam || !sourceMatch.awayTeam) return null;
-      return sourceMatch.winner.id === sourceMatch.homeTeam.id
+      return sourceMatch.userPick.id === sourceMatch.homeTeam.id
         ? sourceMatch.awayTeam
         : sourceMatch.homeTeam;
     }
