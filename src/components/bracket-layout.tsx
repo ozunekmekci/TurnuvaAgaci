@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Trophy } from 'lucide-react';
 import { ResolvedSlot, TeamRef } from '../lib/bracket/types';
 import { MatchCard } from './match-card';
@@ -28,6 +28,44 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
   rawUserPicks = {},
   onPickMatch,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        // Measure parent width (or viewport width as safety fallback)
+        const parentWidth = containerRef.current.parentElement?.clientWidth || window.innerWidth;
+        // Total design width of the bracket elements:
+        // (8 match columns * 220px) + (1 center column * 260px) + (8 gaps * 24px) + padding = ~2240px
+        const designWidth = 2240;
+        
+        // Calculate scale to fit the parent width exactly, allowing a margin
+        const calculatedScale = Math.min(1, Math.max(0.15, (parentWidth - 24) / designWidth));
+        setScale(calculatedScale);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    // Also use ResizeObserver for more accurate container width tracking
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof window !== 'undefined' && containerRef.current?.parentElement) {
+      resizeObserver = new ResizeObserver(() => {
+        handleResize();
+      });
+      resizeObserver.observe(containerRef.current.parentElement);
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
+  }, []);
+
   // Helper to find match by id
   const getMatch = (id: string): ResolvedSlot => {
     const match = resolvedMatches.find((m) => m.matchId === id);
@@ -47,12 +85,38 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
   const finalMatch = getMatch('F-1');
   const champion: TeamRef | null = finalMatch.userPick;
 
+  const bracketHeight = 800; // Designed vertical height of columns
+
   return (
-    <div className="w-full flex flex-col items-center">
-      {/* Scroll container for mobile/tablet */}
-      <div className="w-full overflow-x-auto pb-6 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
-        <div className="flex flex-row items-center justify-start [@media(min-width:2200px)]:justify-center gap-6 min-w-max px-8 py-4">
-          
+    <div ref={containerRef} className="w-full flex flex-col items-center overflow-hidden">
+      {/* Scaled wrapper container to preserve dynamic document flow height */}
+      <div 
+        style={{ 
+          height: bracketHeight * scale + 24, 
+          width: '100%', 
+          overflow: 'hidden', 
+          position: 'relative' 
+        }}
+        className="flex items-start justify-center"
+      >
+        {/* The actual bracket, absolutely positioned and scaled */}
+        <div
+          style={{
+            transform: `scale(${scale})`,
+            transformOrigin: 'top center',
+            width: 2240,
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 24,
+            paddingTop: 12,
+            position: 'absolute',
+            left: '50%',
+            marginLeft: -1120, // Negative half of width to center perfectly
+          }}
+          className="flex-shrink-0"
+        >
           {/* LEFT SIDE BRACKET */}
           <div className="flex flex-row gap-6 items-center flex-shrink-0">
             {/* R32 Left */}
