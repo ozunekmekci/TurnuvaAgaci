@@ -13,7 +13,7 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ## Şu An Aktif Sprint
 
-**Sprint 6 — Paylaşım (X.com intent + OG image + native share)** (devam ediyor)
+**Sprint 7 — Responsive/mobil düzen** (devam ediyor)
 
 ---
 
@@ -25,8 +25,8 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 - [x] Sprint 3 — URL-state katmanı
 - [x] Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)
 - [x] Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)
-- [/] Sprint 6 — Paylaşım (X.com intent + OG image + native share)
-- [ ] Sprint 7 — Responsive/mobil düzen
+- [x] Sprint 6 — Paylaşım (X.com intent + OG image + native share)
+- [/] Sprint 7 — Responsive/mobil düzen
 - [ ] Sprint 8 — Cila: gerçek veriyle uçtan uca test, performans, deploy
 
 ---
@@ -75,7 +75,7 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 - [x] `frontend-design` skill'ini incele, marka/renk/tipografi yönünü belirle (SYSTEM_PROMPT.md Bölüm 6 son madde).
 - [x] `MatchCard` bileşeni: 5 görsel duruma göre (bekliyor/seçilebilir/seçilmiş/kilitli/geçersiz kılınmış) render.
-- [x] `BracketColumn`, `BracketSide` (sol/sağ blok), `FinalCenterpiece` (final + 3.lük + şampiyon kutusu) bileşenleri.
+- [x] `BracketColumn`, `BracketSide` (sol/sağ blok), `FinalCenterpiece` (final + 3.lük + şampiyon kutusu) bileşeni.
 - [x] Sahte (mock) veriyle TÜM görsel durumları ekranda gösterecek bir test sayfası/Storybook benzeri görünüm oluştur — gerçek motor bağlanmadan önce tasarım onayı için.
 - [x] Bu sprintte HENÜZ tıklama/etkileşim yok, sadece statik render.
 
@@ -89,10 +89,10 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ### Sprint 6 — Paylaşım (X.com intent + OG image + native share)
 
-- [ ] X.com intent linki: güncel URL-state linkini ve özet metni (`"Tahminim: Şampiyon Arjantin! Sen de tahmin et:"` gibi) intent URL'ine göm.
-- [ ] `@vercel/og` ile bir API route (`/app/api/og/route.tsx`): URL-state'i parametre alıp bracket özetinin PNG görselini üretsin.
-- [ ] Instagram paylaşımı: mobilde `navigator.share` (Web Share API) ile native paylaşım sheet'i; masaüstünde görseli indirme butonu.
-- [ ] Paylaşım görselinin tasarımı: şampiyon + öne çıkan tahminler, marka/logo, link/QR (opsiyonel).
+- [x] X.com intent linki: güncel URL-state linkini ve özet metni (`"Tahminim: Şampiyon Arjantin! Sen de tahmin et:"` gibi) intent URL'ine göm.
+- [x] `@vercel/og` ile bir API route (`/app/api/og/route.tsx`): URL-state'i parametre alıp bracket özetinin PNG görselini üretsin.
+- [x] Instagram paylaşımı: mobilde `navigator.share` (Web Share API) ile native paylaşım sheet'i; masaüstünde görseli indirme butonu.
+- [x] Paylaşım görselinin tasarımı: şampiyon + öne çıkan tahminler, marka/logo, link/QR (opsiyonel).
 
 ### Sprint 7 — Responsive/Mobil
 

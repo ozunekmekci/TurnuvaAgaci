@@ -40,6 +40,23 @@ export const BracketContainer: React.FC = () => {
     });
   }, [resolvedMatches, userPicks]);
 
+  // Sütun bazlı yuvarlama sayıları ve ilerlemeler
+  const roundStats = useMemo(() => {
+    const r32 = resolvedMatches.filter((m) => m.matchId.startsWith('R32-'));
+    const r16 = resolvedMatches.filter((m) => m.matchId.startsWith('R16-'));
+    const qf = resolvedMatches.filter((m) => m.matchId.startsWith('QF-'));
+    const sf = resolvedMatches.filter((m) => m.matchId.startsWith('SF-'));
+    const finals = resolvedMatches.filter((m) => m.matchId === 'F-1' || m.matchId === '3RD-1');
+
+    return {
+      r32: { completed: r32.filter((m) => m.userPick !== null).length, total: r32.length },
+      r16: { completed: r16.filter((m) => m.userPick !== null).length, total: r16.length },
+      qf: { completed: qf.filter((m) => m.userPick !== null).length, total: qf.length },
+      sf: { completed: sf.filter((m) => m.userPick !== null).length, total: sf.length },
+      finals: { completed: finals.filter((m) => m.userPick !== null).length, total: finals.length },
+    };
+  }, [resolvedMatches]);
+
   // Handle Share Actions
   const handleShareClick = async () => {
     const shareUrl = window.location.href;
@@ -70,6 +87,14 @@ export const BracketContainer: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // Scroll to column on mobile
+  const scrollToColumn = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  };
+
   // Build Social links
   const pParam = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('p') || '' : '';
   const shareText = `2026 FIFA Dünya Kupası tahminlerimi tamamladım! Şampiyonum: ${champion ? champion.name : ''} 🏆 Seninki hangisi?`;
@@ -81,7 +106,7 @@ export const BracketContainer: React.FC = () => {
   return (
     <div className="w-full flex flex-col items-center">
       {/* Top dashboard controls */}
-      <div className="w-full max-w-6xl px-4 mb-8 flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 backdrop-blur-md">
+      <div className="w-full max-w-6xl px-4 mb-6 flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 backdrop-blur-md">
         
         {/* Progress Section */}
         <div className="flex flex-col gap-1 w-full md:w-auto">
@@ -139,6 +164,15 @@ export const BracketContainer: React.FC = () => {
           </button>
         </div>
 
+      </div>
+
+      {/* Round Quick Navigation Breadcrumb (Especially for Mobile UX) */}
+      <div className="flex flex-wrap justify-center items-center gap-2 mb-6 px-4">
+        {renderNavButton('SON 32', roundStats.r32, () => scrollToColumn('col-left-r32'))}
+        {renderNavButton('SON 16', roundStats.r16, () => scrollToColumn('col-left-r16'))}
+        {renderNavButton('ÇEYREK FİNAL', roundStats.qf, () => scrollToColumn('col-left-qf'))}
+        {renderNavButton('YARI FİNAL', roundStats.sf, () => scrollToColumn('col-left-sf'))}
+        {renderNavButton('FİNAL', roundStats.finals, () => scrollToColumn('col-center'))}
       </div>
 
       {/* Symmetrical Bracket Render */}
@@ -243,3 +277,36 @@ export const BracketContainer: React.FC = () => {
     </div>
   );
 };
+
+// Helper component for round navigation button
+function renderNavButton(
+  label: string,
+  stat: { completed: number; total: number },
+  onClick: () => void
+) {
+  const isCompleted = stat.completed === stat.total;
+  
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-[10px] md:text-xs font-bold transition-all cursor-pointer active:scale-95
+        ${
+          isCompleted
+            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20'
+            : stat.completed > 0
+            ? 'bg-amber-500/5 border-amber-500/30 text-amber-400 hover:bg-amber-500/10'
+            : 'bg-slate-900/40 border-slate-800/60 text-slate-400 hover:bg-slate-800/40 hover:text-slate-300'
+        }
+      `}
+    >
+      {isCompleted && <Check className="w-3 h-3 text-emerald-400" />}
+      <span>{label}</span>
+      <span className={`text-[9px] px-1 rounded-md py-0.2 ml-0.5
+        ${isCompleted ? 'bg-emerald-500/15' : 'bg-slate-950/60'}
+      `}>
+        {stat.completed}/{stat.total}
+      </span>
+    </button>
+  );
+}
