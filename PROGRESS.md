@@ -13,7 +13,7 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ## Şu An Aktif Sprint
 
-**Sprint 2 — Bracket motoru** (devam ediyor)
+**Sprint 3 — URL-state katmanı** (devam ediyor)
 
 ---
 
@@ -21,8 +21,8 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 - [x] Sprint 0 — Proje iskeleti ve temel kurulum
 - [x] Sprint 1 — Veri modeli ve sync script
-- [/] Sprint 2 — Bracket motoru (saf mantık + testler)
-- [ ] Sprint 3 — URL-state katmanı
+- [x] Sprint 2 — Bracket motoru (saf mantık + testler)
+- [/] Sprint 3 — URL-state katmanı
 - [ ] Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)
 - [ ] Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)
 - [ ] Sprint 6 — Paylaşım (X.com intent + OG image + native share)
@@ -53,15 +53,15 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ### Sprint 2 — Bracket Motoru
 
-- [ ] `resolveBracket(realData, userPicks)` fonksiyonunu SYSTEM_PROMPT.md Bölüm 4.2'deki algoritmaya göre `/lib/bracket/resolve.ts`'te yaz.
-- [ ] Altın kural olarak "gerçek sonuç > kullanıcı tahmini" önceliğinin kod genelinde tek bir noktadan (yardımcı fonksiyon) uygulandığından emin ol — bu mantığı iki yerde tekrar yazma.
-- [ ] SYSTEM_PROMPT.md Bölüm 4.3'teki TÜM test senaryolarını Vitest ile yaz:
-  - [ ] Boş durum testi
-  - [ ] Son 32 oynanmış, üst tur boş testi
-  - [ ] Tüm turlar kullanıcı tahminiyle dolu, gerçek sonuç yok testi
-  - [ ] **Ana senaryo:** Güney Afrika/Kanada zincirleme geçersiz kılma testi
-  - [ ] Turnuva bitmiş, şampiyon otomatik belirleniyor testi
-- [ ] `pnpm test` tamamen yeşil olmadan bu sprint kapanmaz.
+- [x] `resolveBracket(realData, userPicks)` fonksiyonunu SYSTEM_PROMPT.md Bölüm 4.2'deki algoritmaya göre `src/lib/bracket/resolve.ts`'te yaz.
+- [x] Altın kural olarak "gerçek sonuç > kullanıcı tahmini" önceliğinin kod genelinde tek bir noktadan (yardımcı fonksiyon) uygulandığından emin ol — bu mantığı iki yerde tekrar yazma.
+- [x] SYSTEM_PROMPT.md Bölüm 4.3'teki TÜM test senaryolarını Vitest ile yaz:
+  - [x] Boş durum testi
+  - [x] Son 32 oynanmış, üst tur boş testi
+  - [x] Tüm turlar kullanıcı tahminiyle dolu, gerçek sonuç yok testi
+  - [x] **Ana senaryo:** Güney Afrika/Kanada zincirleme geçersiz kılma testi
+  - [x] Turnuva bitmiş, şampiyon otomatik belirleniyor testi
+- [x] `npm run test` tamamen yeşil olmadan bu sprint kapanmaz.
 
 ### Sprint 3 — URL-State Katmanı
 
