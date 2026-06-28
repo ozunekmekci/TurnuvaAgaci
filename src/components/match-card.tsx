@@ -101,26 +101,26 @@ export const MatchCard: React.FC<MatchCardProps> = ({
   return (
     <div
       data-match-id={matchId}
-      className={`match-card-node relative w-[200px] rounded-[22px] transition-all duration-300 border p-2.5 backdrop-blur-md
+      className={`match-card-node relative w-[200px] rounded-[22px] transition-all duration-300 border p-2.5 shadow-xl select-none
         ${
-          // 1. Pending / Waiting state
+          // 1. Pending / Waiting state (solid dark, click disabled via pointer-events-none)
           selectableTeams.length < 2
-            ? 'border-white/5 bg-black/40 opacity-70 pointer-events-none'
+            ? 'border-slate-800/80 bg-[#0f1013] pointer-events-none'
             : // 2. Invalidated state (needs attention)
             isInvalidated
-            ? 'border-rose-500/50 bg-rose-950/20 shadow-[0_0_15px_rgba(244,63,94,0.15)] animate-pulse'
+            ? 'border-rose-500/60 bg-[#0f1013] shadow-[0_0_15px_rgba(244,63,94,0.2)] animate-pulse'
             : // 3. Locked / Played state
             isLocked
-            ? 'border-white/10 bg-black/55 opacity-90'
+            ? 'border-slate-800 bg-[#0f1013]'
             : // 4. User selection made or selectable
             userPick
-            ? 'border-amber-500/40 bg-black/45 shadow-[0_0_12px_rgba(245,158,11,0.08)]'
-            : 'border-white/10 bg-black/40 hover:border-white/20'
+            ? 'border-amber-500/50 bg-[#0f1013] shadow-[0_0_12px_rgba(245,158,11,0.12)]'
+            : 'border-slate-800 bg-[#0f1013] hover:border-slate-700'
         }
       `}
     >
       {/* Badges / Header (Date and City) */}
-      <div className="flex justify-between items-center mb-1.5 px-1 text-[8.5px] font-bold text-slate-300 uppercase tracking-wide select-none">
+      <div className="flex justify-between items-center mb-1.5 px-1 text-[8.5px] font-bold text-slate-300 uppercase tracking-wide">
         <span>{matchDetails.date}</span>
         <div className="flex items-center gap-1">
           {isLocked && <Lock className="w-2.5 h-2.5 text-slate-400" />}
@@ -177,17 +177,17 @@ function renderTeamRow(
 ) {
   if (!team) {
     return (
-      <div className="w-full flex items-center justify-between h-8 px-2 rounded-xl bg-[#151519] border border-white/5 opacity-80">
+      <div className="w-full flex items-center justify-between h-8 px-2 rounded-xl bg-[#151519] border border-white/5">
         <div className="flex items-center gap-2">
           {/* Flag Placeholder (Left for TBD matches) */}
           <div className="w-6 h-4 bg-[#5a5b6f] border border-[#F7F7F8]/80 rounded-[5px_0px_5px_0px] flex-shrink-0" />
           {/* TBD Text (Middle) */}
-          <span className="font-fwc2026 text-[12px] tracking-widest text-[#B6B7C3] font-bold select-none">
+          <span className="font-fwc2026 text-[12px] tracking-widest text-[#B6B7C3] font-bold">
             TBD
           </span>
         </div>
         {/* Checkbox box (Right for TBD matches) */}
-        <div className="w-5 h-5 rounded-[5px] bg-[#5a5b6f] flex items-center justify-center text-[#F7F7F8] text-[9px] font-black select-none">
+        <div className="w-5 h-5 rounded-[5px] bg-[#5a5b6f] flex items-center justify-center text-[#F7F7F8] text-[9px] font-black">
           -
         </div>
       </div>
