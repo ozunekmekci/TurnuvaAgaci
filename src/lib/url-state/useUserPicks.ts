@@ -55,9 +55,17 @@ export function useUserPicks(realData: RealMatch[]) {
     [pathname, router, searchParams, realData]
   );
 
+  const resetPicks = useCallback(() => {
+    setUserPicks({});
+    startTransition(() => {
+      router.replace(pathname, { scroll: false });
+    });
+  }, [pathname, router]);
+
   return {
     userPicks,
     updatePick,
+    resetPicks,
     isUpdating: isPending,
   };
 }

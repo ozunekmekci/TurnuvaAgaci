@@ -13,7 +13,7 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ## Şu An Aktif Sprint
 
-**Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)** (devam ediyor)
+**Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)** (devam ediyor)
 
 ---
 
@@ -23,8 +23,8 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 - [x] Sprint 1 — Veri modeli ve sync script
 - [x] Sprint 2 — Bracket motoru (saf mantık + testler)
 - [x] Sprint 3 — URL-state katmanı
-- [/] Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)
-- [ ] Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)
+- [x] Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)
+- [/] Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)
 - [ ] Sprint 6 — Paylaşım (X.com intent + OG image + native share)
 - [ ] Sprint 7 — Responsive/mobil düzen
 - [ ] Sprint 8 — Cila: gerçek veriyle uçtan uca test, performans, deploy
@@ -73,11 +73,11 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ### Sprint 4 — Bracket UI (Statik Görünüm)
 
-- [ ] `frontend-design` skill'ini incele, marka/renk/tipografi yönünü belirle (SYSTEM_PROMPT.md Bölüm 6 son madde).
-- [ ] `MatchCard` bileşeni: 5 görsel duruma göre (bekliyor/seçilebilir/seçilmiş/kilitli/geçersiz kılınmış) render.
-- [ ] `BracketColumn`, `BracketSide` (sol/sağ blok), `FinalCenterpiece` (final + 3.lük + şampiyon kutusu) bileşenleri.
-- [ ] Sahte (mock) veriyle TÜM görsel durumları ekranda gösterecek bir test sayfası/Storybook benzeri görünüm oluştur — gerçek motor bağlanmadan önce tasarım onayı için.
-- [ ] Bu sprintte HENÜZ tıklama/etkileşim yok, sadece statik render.
+- [x] `frontend-design` skill'ini incele, marka/renk/tipografi yönünü belirle (SYSTEM_PROMPT.md Bölüm 6 son madde).
+- [x] `MatchCard` bileşeni: 5 görsel duruma göre (bekliyor/seçilebilir/seçilmiş/kilitli/geçersiz kılınmış) render.
+- [x] `BracketColumn`, `BracketSide` (sol/sağ blok), `FinalCenterpiece` (final + 3.lük + şampiyon kutusu) bileşenleri.
+- [x] Sahte (mock) veriyle TÜM görsel durumları ekranda gösterecek bir test sayfası/Storybook benzeri görünüm oluştur — gerçek motor bağlanmadan önce tasarım onayı için.
+- [x] Bu sprintte HENÜZ tıklama/etkileşim yok, sadece statik render.
 
 ### Sprint 5 — Bracket UI Etkileşimi
 
