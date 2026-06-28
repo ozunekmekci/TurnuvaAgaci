@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import { RefreshCw, Share2, Sparkles, Trophy } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { RefreshCw, Share2, Sparkles, X, Copy, Check, ExternalLink } from 'lucide-react';
 import { RealMatch } from '../lib/bracket/types';
 import { resolveBracket } from '../lib/bracket/resolve';
 import { useUserPicks } from '../lib/url-state/useUserPicks';
@@ -12,6 +12,8 @@ const realData = rawTournamentData as RealMatch[];
 
 export const BracketContainer: React.FC = () => {
   const { userPicks, updatePick, resetPicks, isUpdating } = useUserPicks(realData);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   // Memoize resolved matches to avoid recalculating on every render
   const resolvedMatches = useMemo(() => {
@@ -21,7 +23,6 @@ export const BracketContainer: React.FC = () => {
   // Statistics calculation
   const totalMatchesCount = resolvedMatches.length; // Should be 32
   const completedPicksCount = useMemo(() => {
-    // Count matches where user has a resolved userPick and the match is either played or selectable
     return resolvedMatches.filter((m) => m.userPick !== null).length;
   }, [resolvedMatches]);
 
@@ -38,6 +39,44 @@ export const BracketContainer: React.FC = () => {
       return !!rawPick && !m.userPick && m.selectableTeams.length === 2;
     });
   }, [resolvedMatches, userPicks]);
+
+  // Handle Share Actions
+  const handleShareClick = async () => {
+    const shareUrl = window.location.href;
+    const championName = champion ? champion.name : 'Belirlenmedi';
+    const text = `2026 FIFA Dünya Kupası tahminlerimi tamamladım! Şampiyonum: ${championName} 🏆 Seninki hangisi? Buradan tahminini oluştur:`;
+
+    // 1. Try mobile native share first (Web Share API)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Dünya Kupası Tahminlerim',
+          text: text,
+          url: shareUrl,
+        });
+        return;
+      } catch (error) {
+        console.warn('Native share failed or dismissed, falling back to modal:', error);
+      }
+    }
+
+    // 2. Fallback to custom sharing modal
+    setShowShareModal(true);
+  };
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  // Build Social links
+  const pParam = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('p') || '' : '';
+  const shareText = `2026 FIFA Dünya Kupası tahminlerimi tamamladım! Şampiyonum: ${champion ? champion.name : ''} 🏆 Seninki hangisi?`;
+  
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + (typeof window !== 'undefined' ? window.location.href : ''))}`;
+  const ogImageUrl = `/api/og?p=${pParam}`;
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -82,13 +121,14 @@ export const BracketContainer: React.FC = () => {
             <span>Sıfırla</span>
           </button>
 
-          {/* Share Button (Placeholder, to be detailed in Sprint 6) */}
+          {/* Share Button */}
           <button
             type="button"
-            disabled={completedPicksCount < totalMatchesCount || isUpdating}
+            onClick={handleShareClick}
+            disabled={completedPicksCount === 0 || isUpdating}
             className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl font-bold text-xs transition-all cursor-pointer active:scale-95 disabled:active:scale-100
               ${
-                completedPicksCount === totalMatchesCount
+                completedPicksCount > 0
                   ? 'bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]'
                   : 'bg-slate-800 text-slate-500 opacity-50 cursor-not-allowed'
               }
@@ -109,6 +149,97 @@ export const BracketContainer: React.FC = () => {
           onPickMatch={updatePick}
         />
       </div>
+
+      {/* Sharing Modal (Desktop / Fallback) */}
+      {showShareModal && (
+        <div className="fixed inset-0 bg-slate-950/70 backdrop-blur-md flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl relative flex flex-col gap-5 animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-bold text-slate-200 flex items-center gap-2">
+                <Share2 className="w-5 h-5 text-amber-400" />
+                <span>Tahminlerini Paylaş</span>
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowShareModal(false)}
+                className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Link Copy Box */}
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-semibold text-slate-400">Tahmin Paylaşım Linki</span>
+              <div className="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-2xl p-2.5 pl-4">
+                <span className="text-xs text-slate-400 truncate flex-1">
+                  {typeof window !== 'undefined' ? window.location.href : ''}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  className="flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs font-bold text-slate-200 transition-all cursor-pointer active:scale-95"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-green-400" />
+                      <span className="text-green-400">Kopyalandı</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Kopyala</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Social Share grid */}
+            <div className="grid grid-cols-2 gap-3">
+              {/* Twitter */}
+              <a
+                href={twitterUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-[#000000] hover:bg-[#1a1a1a] border border-slate-800 text-xs font-bold text-white transition-all text-center"
+              >
+                <span>X / Twitter</span>
+              </a>
+
+              {/* WhatsApp */}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-[#25d366]/10 hover:bg-[#25d366]/20 border border-[#25d366]/30 text-xs font-bold text-[#25d366] transition-all text-center"
+              >
+                <span>WhatsApp</span>
+              </a>
+            </div>
+
+            {/* IG / Image Sharing Section */}
+            <div className="flex flex-col gap-3 bg-slate-950/40 border border-slate-800/80 rounded-2xl p-4 mt-1">
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs font-bold text-slate-300">Instagram & Görsel Paylaşımı</span>
+                <span className="text-[10px] text-slate-500">
+                  Instagram hikayende paylaşmak veya kaydetmek için özet PNG görselini açıp indirebilirsin.
+                </span>
+              </div>
+              <a
+                href={ogImageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 hover:shadow-[0_0_12px_rgba(245,158,11,0.2)] text-xs font-extrabold transition-all text-center"
+              >
+                <span>Önizleme Görselini Aç</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

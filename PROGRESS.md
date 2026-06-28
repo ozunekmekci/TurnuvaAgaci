@@ -13,7 +13,7 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ## Şu An Aktif Sprint
 
-**Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)** (devam ediyor)
+**Sprint 6 — Paylaşım (X.com intent + OG image + native share)** (devam ediyor)
 
 ---
 
@@ -24,8 +24,8 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 - [x] Sprint 2 — Bracket motoru (saf mantık + testler)
 - [x] Sprint 3 — URL-state katmanı
 - [x] Sprint 4 — Bracket UI (statik, etkileşimsiz görünüm)
-- [/] Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)
-- [ ] Sprint 6 — Paylaşım (X.com intent + OG image + native share)
+- [x] Sprint 5 — Bracket UI etkileşimi (seçim, kilitleme, geçersiz kılma animasyonu)
+- [/] Sprint 6 — Paylaşım (X.com intent + OG image + native share)
 - [ ] Sprint 7 — Responsive/mobil düzen
 - [ ] Sprint 8 — Cila: gerçek veriyle uçtan uca test, performans, deploy
 
@@ -46,7 +46,7 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 - [x] SYSTEM_PROMPT.md Bölüm 4.1'deki `RealMatch` ve `TeamRef` tiplerini `src/lib/bracket/types.ts`'te tanımla.
 - [x] 2026 Dünya Kupası Son 32 kadrosunu ve eşleşme ağacını (hangi Son 32 maçı hangi Son 16 slotuna besliyor, vs.) `tournament-data.json`'a elle/script ile doldur — bu, openfootball/worldcup.json'dan çekilecek.
-- [x] `team-mapping.json`'ı doldur: her takım için İngilizce kaynak adı → Türkçe görünen ad + bayrak kodu.
+- [x] `team-mapping.json'ı doldur: her takım için İngilizce kaynak adı → Türkçe görünen ad + bayrak kodu.
 - [x] `scripts/sync-tournament-data.ts` yaz: openfootball/worldcup.json kaynağını çekip kendi formatımıza dönüştürsün, `tournament-data.json`'ı güncellesin. Eşleşmeyen takım adında HATA fırlatsın (sessiz geçmesin).
 - [x] Script'i elle çalıştırıp çıktıyı doğrula (`npm run sync-data`).
 - [x] **Doğrulama testi:** Script'i şu an gerçek Son 32 verisiyle çalıştır, görseldeki/gerçek 2026 WC Son 32 eşleşmeleriyle bire bir örtüştüğünü gözle kontrol et.
@@ -81,13 +81,13 @@ Kural: Bir sprint'teki tüm kutucuklar işaretlenmeden bir sonraki sprint'e geç
 
 ### Sprint 5 — Bracket UI Etkileşimi
 
-- [ ] `resolveBracket` motorunu UI'ya bağla (gerçek `tournament-data.json` + `useUserPicks` state'i).
-- [ ] Maça tıklayınca seçim yapma akışı.
-- [ ] Kilitli slotlara tıklama engellensin, görsel olarak net "kilitli" hissi versin.
-- [ ] Geçersiz kılınan tahminler için highlight/pulse animasyonu (Framer Motion) + kısa açıklama tooltip'i.
-- [ ] Şampiyon kutusunun motor çıkışına göre dinamik güncellenmesi.
+- [x] `resolveBracket` motorunu UI'ya bağla (gerçek `tournament-data.json` + `useUserPicks` state'i).
+- [x] Maça tıklayınca seçim yapma akışı.
+- [x] Kilitli slotlara tıklama engellensin, görsel olarak net "kilitli" hissi versin.
+- [x] Geçersiz kılınan tahminler için highlight/pulse animasyonu (Framer Motion) + kısa açıklama tooltip'i.
+- [x] Şampiyon kutusunun motor çıkışına göre dinamik güncellenmesi.
 
-### Sprint 6 — Paylaşım
+### Sprint 6 — Paylaşım (X.com intent + OG image + native share)
 
 - [ ] X.com intent linki: güncel URL-state linkini ve özet metni (`"Tahminim: Şampiyon Arjantin! Sen de tahmin et:"` gibi) intent URL'ine göm.
 - [ ] `@vercel/og` ile bir API route (`/app/api/og/route.tsx`): URL-state'i parametre alıp bracket özetinin PNG görselini üretsin.
