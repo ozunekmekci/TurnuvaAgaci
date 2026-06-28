@@ -51,12 +51,12 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
     <div className="w-full flex flex-col items-center">
       {/* Scroll container for mobile/tablet */}
       <div className="w-full overflow-x-auto pb-6 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
-        <div className="flex flex-row items-center justify-center gap-6 min-w-[1300px] px-8 py-4">
+        <div className="flex flex-row items-center justify-start [@media(min-width:2200px)]:justify-center gap-6 min-w-max px-8 py-4">
           
           {/* LEFT SIDE BRACKET */}
-          <div className="flex flex-row gap-6 items-center">
+          <div className="flex flex-row gap-6 items-center flex-shrink-0">
             {/* R32 Left */}
-            <div id="col-left-r32" className="flex flex-col justify-between h-[800px] py-2 scroll-mt-4">
+            <div id="col-left-r32" className="flex flex-col justify-between h-[800px] py-2 scroll-mt-4 w-[220px] flex-shrink-0">
               {LEFT_R32_IDS.map((id) => (
                 <MatchCard
                   key={id}
@@ -68,7 +68,7 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
             </div>
 
             {/* R16 Left */}
-            <div id="col-left-r16" className="flex flex-col justify-around h-[800px] py-10 scroll-mt-4">
+            <div id="col-left-r16" className="flex flex-col justify-around h-[800px] py-10 scroll-mt-4 w-[220px] flex-shrink-0">
               {LEFT_R16_IDS.map((id) => (
                 <MatchCard
                   key={id}
@@ -80,7 +80,7 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
             </div>
 
             {/* QF Left */}
-            <div id="col-left-qf" className="flex flex-col justify-around h-[800px] py-20 scroll-mt-4">
+            <div id="col-left-qf" className="flex flex-col justify-around h-[800px] py-20 scroll-mt-4 w-[220px] flex-shrink-0">
               {LEFT_QF_IDS.map((id) => (
                 <MatchCard
                   key={id}
@@ -92,7 +92,7 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
             </div>
 
             {/* SF Left */}
-            <div id="col-left-sf" className="flex flex-col justify-center h-[800px] scroll-mt-4">
+            <div id="col-left-sf" className="flex flex-col justify-center h-[800px] scroll-mt-4 w-[220px] flex-shrink-0">
               {LEFT_SF_IDS.map((id) => (
                 <MatchCard
                   key={id}
@@ -105,7 +105,7 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
           </div>
 
           {/* CENTERPIECE: CHAMPION + FINAL + 3RD PLACE */}
-          <div id="col-center" className="flex flex-col items-center justify-center w-[260px] h-[800px] gap-8 scroll-mt-4">
+          <div id="col-center" className="flex flex-col items-center justify-center w-[260px] h-[800px] gap-8 scroll-mt-4 flex-shrink-0">
             
             {/* Champion Box */}
             <div
@@ -166,9 +166,9 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
           </div>
 
           {/* RIGHT SIDE BRACKET */}
-          <div className="flex flex-row-reverse gap-6 items-center">
+          <div className="flex flex-row-reverse gap-6 items-center flex-shrink-0">
             {/* R32 Right */}
-            <div id="col-right-r32" className="flex flex-col justify-between h-[800px] py-2 scroll-mt-4">
+            <div id="col-right-r32" className="flex flex-col justify-between h-[800px] py-2 scroll-mt-4 w-[220px] flex-shrink-0">
               {RIGHT_R32_IDS.map((id) => (
                 <MatchCard
                   key={id}
@@ -180,7 +180,7 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
             </div>
 
             {/* R16 Right */}
-            <div id="col-right-r16" className="flex flex-col justify-around h-[800px] py-10 scroll-mt-4">
+            <div id="col-right-r16" className="flex flex-col justify-around h-[800px] py-10 scroll-mt-4 w-[220px] flex-shrink-0">
               {RIGHT_R16_IDS.map((id) => (
                 <MatchCard
                   key={id}
@@ -192,7 +192,7 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
             </div>
 
             {/* QF Right */}
-            <div id="col-right-qf" className="flex flex-col justify-around h-[800px] py-20 scroll-mt-4">
+            <div id="col-right-qf" className="flex flex-col justify-around h-[800px] py-20 scroll-mt-4 w-[220px] flex-shrink-0">
               {RIGHT_QF_IDS.map((id) => (
                 <MatchCard
                   key={id}
@@ -204,7 +204,7 @@ export const BracketLayout: React.FC<BracketLayoutProps> = ({
             </div>
 
             {/* SF Right */}
-            <div id="col-right-sf" className="flex flex-col justify-center h-[800px] scroll-mt-4">
+            <div id="col-right-sf" className="flex flex-col justify-center h-[800px] scroll-mt-4 w-[220px] flex-shrink-0">
               {RIGHT_SF_IDS.map((id) => (
                 <MatchCard
                   key={id}
